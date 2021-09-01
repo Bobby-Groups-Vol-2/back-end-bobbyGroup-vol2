@@ -27,6 +27,7 @@ app.get("/", (req, res) => {
 });
 
 require("./app/routes/vaccines.routes")(app);
+require("./app/routes/species.routes")(app);
 // set port, listen for requests
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

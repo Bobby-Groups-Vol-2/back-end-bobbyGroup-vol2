@@ -1,17 +1,17 @@
 module.exports = (sequelize, Sequelize) => {
-    const Vaccines = sequelize.define("vaccines", {
-      vacid: {
+    const Species = sequelize.define("species", {
+        speciesid: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
-      vacname: {
+        speciesname: {
         type: Sequelize.STRING
       },
       
      
     });
   
-    return Vaccines;
+    return Species;
   };
 

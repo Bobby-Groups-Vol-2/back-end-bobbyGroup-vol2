@@ -22,5 +22,5 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.vaccines = require("./vaccines.model.js")(sequelize, Sequelize);
-
+db.species = require("./species.model.js")(sequelize, Sequelize);
 module.exports = db;
