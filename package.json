@@ -1,24 +1,29 @@
 {
-  "name": "intigrated",
+  "name": "back-end-bobbygroup-vol2",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
-  "scripts": {
-    "start": "node index",
-    "dev": "nodemon index"
+  "main": "index.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mysql2": "^2.3.0",
+    "nodemon": "^2.0.12",
+    "save": "^2.4.0",
+    "sequelize": "^6.6.5"
   },
-  "keywords": [],
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev" : "nodemon server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bobby-Groups-Vol-2/back-end-bobbyGroup-vol2.git"
+  },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "express": "^4.17.1",
-    "moment": "^2.29.1",
-    "mysql": "^2.18.1",
-    
-    "pm2": "^5.1.1",
-    "uuid": "^8.3.2"
+  "bugs": {
+    "url": "https://github.com/Bobby-Groups-Vol-2/back-end-bobbyGroup-vol2/issues"
   },
-  "devDependencies": {
-    "nodemon": "^2.0.12"
-  }
+  "homepage": "https://github.com/Bobby-Groups-Vol-2/back-end-bobbyGroup-vol2#readme"
 }
