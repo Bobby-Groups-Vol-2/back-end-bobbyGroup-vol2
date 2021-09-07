@@ -30,12 +30,13 @@ jobs:
           command: |
             git config user.email $GITHUB_EMAIL
             git config user.name $GITHUB_USERNAME
+            ls -la
       - add_ssh_keys:
           fingerprints:
             - $GITHUB_FINGERPRINT
       - run:
           name: Deploy to Azure Web App Using Azure Container Registry Task
-          command: npm run deploy; curl localhost
+          command: npm run deploy
 
 workflows:
   version: 2
