@@ -16,12 +16,11 @@ jobs:
           command: |
                   npm install
                   npm install pm2
+                  pm2 start server.js
       - save_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
             - ./node_modules
-      - run:
-          command: ls -la 
 
   deploy:
     working_directory: ~/repo
