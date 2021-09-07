@@ -15,7 +15,7 @@ jobs:
           name: install-packages
           command: |
                   npm install
-                  npm install pm2
+                  npm install pm2 -g
                   pm2 start server.js
       - save_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
