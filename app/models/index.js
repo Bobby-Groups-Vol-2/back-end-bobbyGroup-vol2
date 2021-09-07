@@ -24,4 +24,5 @@ db.sequelize = sequelize;
 db.vaccines = require("./vaccines.model.js")(sequelize, Sequelize);
 db.species = require("./species.model.js")(sequelize, Sequelize);
 db.users = require("./users.model.js")(sequelize,Sequelize);
+db.patterns = require("./patterns.model.js")(sequelize,Sequelize);
 module.exports = db;

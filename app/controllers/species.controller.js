@@ -2,7 +2,7 @@ const db = require("../models");
 const Species = db.species;
 const Op = db.Sequelize.Op;
 
-// Create and Save a new Tutorial
+// Create and Save a new species
 exports.create = (req, res) => {
   // Validate request
   if (!req.body.speciesname) {
@@ -12,14 +12,14 @@ exports.create = (req, res) => {
     return;
   }
 
-  // Create a Tutorial
+  // Create a species
   const species = {
     speciesid: req.body.speciesid,
     speciesname: req.body.speciesname,
 
   };
 
-  // Save Tutorial in the database
+  // Save species in the database
   Species.create(species)
     .then(data => {
       res.send(data);
@@ -48,7 +48,7 @@ exports.findAll = (req, res) => {
     });
 };
 
-// Find a single Tutorial with an id
+// Find a single species with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
@@ -88,7 +88,7 @@ exports.update = (req, res) => {
     });
 };
 
-// Delete a Tutorial with the specified id in the request
+// Delete a species with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
 
@@ -113,7 +113,7 @@ exports.delete = (req, res) => {
     });
 };
 
-// Delete all Tutorials from the database.
+// Delete all species from the database.
 exports.deleteAll = (req, res) => {
   Species.destroy({
     where: {},

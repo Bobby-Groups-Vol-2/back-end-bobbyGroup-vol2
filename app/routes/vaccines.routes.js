@@ -3,22 +3,22 @@ module.exports = app => {
   
     var router = require("express").Router();
   
-    // Create a new Tutorial
+    // Create a new vaccines
     router.post("/", vaccines.create);
   
-    // Retrieve all Tutorials
+    // Retrieve all vaccines
     router.get("/", vaccines.findAll);
 
-     // Retrieve a single Tutorial with id
+     // Retrieve a single vaccines with id
      router.get("/:id", vaccines.findOne);
   
-     // Update a Tutorial with id
+     // Update a vaccines with id
      router.put("/:id", vaccines.update);
    
-     // Delete a Tutorial with id
+     // Delete a vaccines with id
      router.delete("/:id", vaccines.delete);
    
-     // Delete all Tutorials
+     // Delete all vaccines
      router.delete("/", vaccines.deleteAll);
  
     app.use('/api/vaccines', router);

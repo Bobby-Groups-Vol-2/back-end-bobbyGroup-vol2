@@ -2,7 +2,7 @@ const db = require("../models");
 const Vaccines = db.vaccines;
 const Op = db.Sequelize.Op;
 
-// Create and Save a new Tutorial
+// Create and Save a new vaccines
 exports.create = (req, res) => {
   // Validate request
   if (!req.body.vacname) {
@@ -12,14 +12,14 @@ exports.create = (req, res) => {
     return;
   }
 
-  // Create a Tutorial
+  // Create a vaccines
   const vaccines = {
     vacid: req.body.vacid,
     vacname: req.body.vacname,
 
   };
 
-  // Save Tutorial in the database
+  // Save vaccines in the database
   Vaccines.create(vaccines)
     .then(data => {
       res.send(data);
@@ -27,7 +27,7 @@ exports.create = (req, res) => {
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the Tutorial."
+          err.message || "Some error occurred while creating the vaccines."
       });
     });
 };
@@ -47,7 +47,7 @@ exports.findAll = (req, res) => {
       });
     });
 };
-// Find a single Tutorial with an id
+// Find a single vaccines with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
@@ -112,7 +112,7 @@ exports.delete = (req, res) => {
     });
 };
 
-// Delete all Tutorials from the database.
+// Delete all vaccines from the database.
 exports.deleteAll = (req, res) => {
   Vaccines.destroy({
     where: {},

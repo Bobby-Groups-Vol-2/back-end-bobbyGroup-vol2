@@ -38,7 +38,7 @@ exports.create = (req, res) => {
 
 exports.findAll = (req, res) => {
   const username = req.query.username;
-  var condition = username ? { vacname: { [Op.like]: `%${username}%` } } : null;
+  var condition = username ? { username: { [Op.like]: `%${username}%` } } : null;
 
   Users.findAll({ where: condition })
     .then(data => {
