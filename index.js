@@ -26,6 +26,10 @@ app.get('/Neko',(req,res)=> {   // Router เวลาเรียกใช้�
     console.log('start port 5000')  
     })
 
+app.get('/', (req,res)=> {
+    res.send('Hello i bird su su i noom noi')
+})
+
 //Init middleware
 // app.use(logger);
 
