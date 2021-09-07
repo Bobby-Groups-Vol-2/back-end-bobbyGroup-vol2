@@ -1,49 +1,53 @@
 const db = require("../models");
-const Species = db.species;
+const Users = db.users;
 const Op = db.Sequelize.Op;
 
-// Create and Save a new Tutorial
+// Create and Save a new user
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.speciesname) {
+  if (!req.body.username) {
     res.status(400).send({
       message: "Content can not be empty!"
     });
     return;
   }
 
-  // Create a Tutorial
-  const species = {
-    speciesid: req.body.speciesid,
-    speciesname: req.body.speciesname,
+  // Create a users
+  const users = {
+    userid: req.body.userid,
+    username: req.body.username,
+    password: req.body.password,
+    role: req.body.role,
+    address: req.body.address,
+    tel : req.body.tel
 
   };
 
   // Save Tutorial in the database
-  Species.create(species)
+  Users.create(users)
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the species."
+          err.message || "Some error occurred while creating the Users."
       });
     });
 };
 
 exports.findAll = (req, res) => {
-  const speciesname = req.query.speciesname;
-  var condition = speciesname ? { speciesname: { [Op.like]: `%${speciesname}%` } } : null;
+  const username = req.query.username;
+  var condition = username ? { vacname: { [Op.like]: `%${username}%` } } : null;
 
-  Species.findAll({ where: condition })
+  Users.findAll({ where: condition })
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving species."
+          err.message || "Some error occurred while retrieving Users."
       });
     });
 };
@@ -52,13 +56,13 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  Species.findByPk(id)
+  Users.findByPk(id)
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error retrieving Species with id=" + id
+        message: "Error retrieving Users with id=" + id
       });
     });
 };
@@ -67,23 +71,23 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
   const id = req.params.id;
 
-  Species.update(req.body, {
-    where: { speciesid: id }
+  Users.update(req.body, {
+    where: { userid: id }
   })
     .then(num => {
       if (num == 1) {
         res.send({
-          message: "Species was updated successfully."
+          message: "Users was updated successfully."
         });
       } else {
         res.send({
-          message: `Cannot update Species with id=${id}. Maybe Species was not found or req.body is empty!`
+          message: `Cannot update Users with id=${id}. Maybe Users was not found or req.body is empty!`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error updating species with id=" + id
+        message: "Error updating Users with id=" + id
       });
     });
 };
@@ -92,40 +96,40 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
   const id = req.params.id;
 
-  Species.destroy({
-    where: { speciesid: id }
+  Users.destroy({
+    where: { userid: id }
   })
     .then(num => {
       if (num == 1) {
         res.send({
-          message: "Species was deleted successfully!"
+          message: "Users was deleted successfully!"
         });
       } else {
         res.send({
-          message: `Cannot delete Species with id=${id}. Maybe Species was not found!`
+          message: `Cannot delete Users with id=${id}. Maybe Users was not found!`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Could not delete Species with id=" + id
+        message: "Could not delete Users with id=" + id
       });
     });
 };
 
 // Delete all Tutorials from the database.
 exports.deleteAll = (req, res) => {
-  Species.destroy({
+    Users.destroy({
     where: {},
     truncate: false
   })
     .then(nums => {
-      res.send({ message: `${nums} Species were deleted successfully!` });
+      res.send({ message: `${nums} Users were deleted successfully!` });
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while removing all Species."
+          err.message || "Some error occurred while removing all Users."
       });
     });
 };
