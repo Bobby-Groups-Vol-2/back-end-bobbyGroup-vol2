@@ -12,10 +12,13 @@
     "save": "^2.4.0",
     "sequelize": "^6.6.5"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server"
+    "dev": "nodemon server",
+    "deploy" : "npx gh-pages -b deploy --message '[skip ci] Updates' -d ./"
   },
   "repository": {
     "type": "git",
