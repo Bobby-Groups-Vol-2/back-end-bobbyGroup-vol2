@@ -7,23 +7,30 @@ module.exports = (sequelize, Sequelize) => {
     },
         username: {
         type: Sequelize.STRING
+        ,allowNull : false
       },
       password: {
         type: Sequelize.STRING
+        ,allowNull : false
       },
       role:{
         type: Sequelize.STRING
+        ,allowNull : false
       },
       address:{
         type: Sequelize.STRING
       },
       tel:{
         type: Sequelize.INTEGER
+        ,allowNull : false
       }
-      
-     
-    });
-  
+       });
+    Users.associate = models =>{
+      Users.hasMany(models.orders,{
+        onDelete: "cascade"
+      })
+    }
+
     return Users;
   };
 

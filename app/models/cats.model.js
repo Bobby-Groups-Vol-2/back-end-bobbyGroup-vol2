@@ -1,5 +1,4 @@
-const Species = require("./species.model.js")
-const Orders = require("./orders.model.js")
+
 module.exports = (sequelize, Sequelize) => {
     const Cats = sequelize.define("cats", {
          catid: {
@@ -9,43 +8,57 @@ module.exports = (sequelize, Sequelize) => {
         },
         catname: {
         type: Sequelize.STRING
+        ,allowNull : false
       },
       catimage:{
           type: Sequelize.STRING
+          ,allowNull : false
       },
       price:{
           type: Sequelize.DOUBLE
+          ,allowNull : false
       },
       gender:{
         type: Sequelize.STRING
+        ,allowNull : false
       },
       status: {
         type : Sequelize.STRING
+        ,allowNull : false
       },
       dob:{
           type:Sequelize.DATEONLY
+          ,allowNull : false
       },
       certificateimage:{
           type: Sequelize.STRING
+          
       },
       species_speciesid :{
           type:Sequelize.INTEGER,
-          reference:{
-              model : Species,
-              key : id 
-          }
+        
       },
       orders_orderid : {
           type : Sequelize.INTEGER,
-          reference: {
-              model : Orders,
-              key : id
-          }
+        
       }
       
 
     });
-  
+    Cats.associate = models =>{
+        Cats.belongsTo(model.Orders, {
+          foreignKey:{
+           name   : 'orders_orderid',
+          allowNull : false
+          }
+        }),
+        Cats.belongsTo(model.Species,{
+            foreignKey:{
+                name   : 'species_speciesid',
+               allowNull : false
+               }
+        })
+       }
     return Cats;
   };
 

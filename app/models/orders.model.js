@@ -1,31 +1,34 @@
- const Users = require("./users.model.js")
- const Cats = require("./cats.model.js")
+
+
 module.exports = (sequelize, Sequelize) => {
     const Orders = sequelize.define("orders", {
         orderid: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
-        primaryKey: true
+        primaryKey: true,
+        allowNull : false
+        
     },
-        users_userid: {
-        type: Sequelize.INTEGER,
-        reference: {
-            model: Users,
-            key : id
-        }
-      },
-      cats_catid:{
-        type: Sequelize.INTEGER,
-        reference: {
-            model: Cats,
-            key : id
-        }
+      users_userid:{
+        type : Sequelize.INTEGER,
+  
       }
+      
       
      
     });
-    //1tomany user to order
-  Users.hasMany(Orders);
-  Orders.belongsTo(Users);
+ 
+  Orders.associate = models =>{
+  Orders.belongsTo(model.Users, {
+    foreignKey:{
+     name   : 'users_userid',
+    allowNull : false
+    }
+  }),
+    Orders.hasMany(model.cats,{
+      onDelete: "cascade"
+    })
+  }
+ 
     return Orders;
   };

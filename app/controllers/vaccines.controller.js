@@ -62,7 +62,7 @@ exports.findOne = (req, res) => {
     });
 };
 
-// Update a Species by the id in the request
+// Update a Vaccines by the id in the request
 exports.update = (req, res) => {
   const id = req.params.id;
 
@@ -87,7 +87,7 @@ exports.update = (req, res) => {
     });
 };
 
-// Delete a Tutorial with the specified id in the request
+// Delete a Vaccines with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
 

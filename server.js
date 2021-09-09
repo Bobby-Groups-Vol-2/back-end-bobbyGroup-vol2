@@ -30,6 +30,9 @@ require("./app/routes/vaccines.routes")(app);
 require("./app/routes/species.routes")(app);
 require("./app/routes/users.routes")(app);
 require("./app/routes/patterns.routes")(app);
+require("./app/routes/orders.routes")(app);
+require("./app/routes/cats.routes")(app);
+
 // set port, listen for requests
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

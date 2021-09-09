@@ -7,11 +7,18 @@ module.exports = (sequelize, Sequelize) => {
     },
         speciesname: {
         type: Sequelize.STRING
+        ,allowNull : false
       },
       
      
     });
-  
+  Species.associate = model =>{
+    Species.hasMany(model.species,{
+    onDelete: "cascade"
+    })
+  }
+
     return Species;
+
   };
 

@@ -7,6 +7,7 @@ module.exports = (sequelize, Sequelize) => {
     },
       vacname: {
         type: Sequelize.STRING
+        ,allowNull : false
       },
       
      

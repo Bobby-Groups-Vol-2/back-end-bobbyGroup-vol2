@@ -23,5 +23,6 @@ module.exports = (sequelize, Sequelize) => {
  
    Patterns.belongsToMany(Species, { through: Have });
    Species.belongsToMany(Patterns, { through: Have });
+   
    return Have;
  };

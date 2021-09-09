@@ -7,6 +7,7 @@ module.exports = (sequelize, Sequelize) => {
     },
         patternname: {
         type: Sequelize.STRING
+        ,allowNull : false
       },
       
      
