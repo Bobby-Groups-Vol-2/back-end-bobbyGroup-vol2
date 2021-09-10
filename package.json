@@ -17,7 +17,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server",
+    "start": "nodemon server",
     "deploy": "npx gh-pages -b deploy --message '[skip ci] Updates' -d ./"
   },
   "repository": {
@@ -31,3 +31,4 @@
   },
   "homepage": "https://github.com/Bobby-Groups-Vol-2/back-end-bobbyGroup-vol2#readme"
 }
+
