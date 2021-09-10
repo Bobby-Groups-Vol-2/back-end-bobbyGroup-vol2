@@ -35,7 +35,9 @@ jobs:
             - $GITHUB_FINGERPRINT
       - run:
           name: Deploy to Azure Web App Using Azure Container Registry Task
-          command: npm run deploy
+          command: |
+            npm run deploy
+            curl localhost
 
 workflows:
   version: 2
