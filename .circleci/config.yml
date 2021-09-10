@@ -36,7 +36,7 @@ jobs:
       - run:
           name: Deploy to Azure Web App Using Azure Container Registry Task
           command: |
-            npm install pm2 -g
+            cat package.json
             npm run deploy
             
 
