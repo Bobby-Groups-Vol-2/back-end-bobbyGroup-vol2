@@ -36,9 +36,8 @@ jobs:
       - run:
           name: Deploy to Azure Web App Using Azure Container Registry Task
           command: |
-            cat package.json
             npm run deploy
-            
+            curl localhost
 
 workflows:
   version: 2
