@@ -46,7 +46,7 @@ jobs:
         with: 
          host: ${{ secrets.HOST }}
          username: ${{ secrets.SSH_USERNAME }}
-         privateKey: ${{ secrets.SSH_PEM }}
+         password: ${{ secrets.SSH_PASS }}
          source: ./docker-compose.yml
          target: ./Docker-back-end
          
@@ -61,7 +61,7 @@ jobs:
         with:
          host: ${{ secrets.HOST }}
          username: ${{ secrets.SSH_USERNAME }}
-         key: ${{ secrets.SSH_PEM }}
+         password: ${{ secrets.SSH_PASS }}
          script: |
              docker pull ghcr.io/bobby-groups-vol-2/back-end-bobbygroup-vol2:dev
              docker-compose -f Docker-back-end/docker-compose.yml down 
