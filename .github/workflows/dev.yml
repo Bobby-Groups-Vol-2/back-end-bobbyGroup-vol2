@@ -39,7 +39,7 @@ jobs:
         with:
          file: ./Dockerfile
          push: true
-         tags: ghcr.io/bobby-groups-vol-2/back-end-bobbyGroup-vol2:dev
+         tags: ghcr.io/bobby-groups-vol-2/back-end-bobbygroup-vol2:dev
 
       - name: Publish compose file
         uses: appleboy/scp-action@master
@@ -63,6 +63,6 @@ jobs:
          username: ${{ secrets.SSH_USERNAME }}
          key: ${{ secrets.SSH_PEM }}
          script: |
-             docker pull ghcr.io/bobby-groups-vol-2/back-end-bobbyGroup-vol2:dev
+             docker pull ghcr.io/bobby-groups-vol-2/back-end-bobbygroup-vol2:dev
              docker-compose -f Docker-back-end/docker-compose.yml down 
              docker-compose -f Docker-back-end/docker-compose.yml up -d 
