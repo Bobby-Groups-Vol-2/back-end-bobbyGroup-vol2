@@ -26,6 +26,10 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to OffMeow application." });
 });
 
+app.get("/test", (req, res) => {
+  res.json({ message: "It's work"})
+})
+
 require("./app/routes/vaccines.routes")(app);
 require("./app/routes/species.routes")(app);
 require("./app/routes/users.routes")(app);
