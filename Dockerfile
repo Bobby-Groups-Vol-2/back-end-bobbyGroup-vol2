@@ -1,5 +1,7 @@
-FROM node:current-alpine
-COPY . /app
+FROM node:14.15.4 as build-stage
 WORKDIR /app
+COPY package*.json ./
 RUN npm install
-ENTRYPOINT ["npm", "start"]
+COPY ./ .
+EXPOSE 5000
+CMD [ "node", "server.js" ]

@@ -1,0 +1,10 @@
+version: "3.6"
+services:
+  back-end:
+    build: .
+    image: ghcr.io/bobby-groups-vol-2/back-end-bobbyGroup-vol2:dev  
+    
+networks:
+    default:
+        external:
+            name: Bobby-network
