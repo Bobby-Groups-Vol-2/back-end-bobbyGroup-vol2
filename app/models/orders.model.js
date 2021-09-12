@@ -6,12 +6,12 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
-        allowNull : false
+ 
         
     },
       users_userid:{
         type : Sequelize.INTEGER,
-  
+      
       }
       
       

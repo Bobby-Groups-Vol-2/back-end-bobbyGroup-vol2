@@ -4,15 +4,16 @@ module.exports = (sequelize, Sequelize) => {
          catid: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
-        primaryKey: true
+        primaryKey: true,
+        allowNull : false
         },
         catname: {
         type: Sequelize.STRING
         ,allowNull : false
       },
       catimage:{
-          type: Sequelize.STRING
-          ,allowNull : false
+          type: Sequelize.STRING,
+          allowNull : false
       },
       price:{
           type: Sequelize.DOUBLE
