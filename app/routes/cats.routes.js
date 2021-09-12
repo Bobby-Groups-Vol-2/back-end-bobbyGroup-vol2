@@ -8,19 +8,19 @@ module.exports = app => {
     // Retrieve all patterns
     router.get("/", cats.findAll);
 
-    // router.post("/",orders.create);
+    router.post("/",cats.create);
  
-    // // Retrieve a single orders with id
-    // router.get("/:id", orders.findOne);
+    // Retrieve a single cats with id
+    router.get("/:id", cats.findOne);
   
-    // // Update a orders with id
-    // router.put("/:id", orders.update);
+    // Update a cats with id
+    router.put("/:id", cats.update);
   
-    // // Delete a orders with id
-    // router.delete("/:id", orders.delete);
+    // Delete a cats with id
+    router.delete("/:id", cats.delete);
   
-    // // Delete all orders
-    // router.delete("/", orders.deleteAll);
+    // Delete all cats
+    router.delete("/", cats.deleteAll);
 
     app.use('/api/cats', router);
   };
