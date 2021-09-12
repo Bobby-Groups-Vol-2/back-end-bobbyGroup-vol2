@@ -46,7 +46,7 @@ jobs:
         with: 
          host: ${{ secrets.HOST }}
          username: ${{ secrets.SSH_USERNAME }}
-         key: ${{ secrets.SSH_PEM }}
+         privateKey: ${{ secrets.SSH_PEM }}
          source: ./docker-compose.yml
          target: ./Docker-back-end
          
