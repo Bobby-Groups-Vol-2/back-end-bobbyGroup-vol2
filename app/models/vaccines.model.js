@@ -1,12 +1,12 @@
-module.exports = (sequelize, Sequelize) => {
+module.exports = (sequelize, Datatypes) => {
     const Vaccines = sequelize.define("vaccines", {
       vacid: {
-        type: Sequelize.INTEGER,
+        type: Datatypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
       vacname: {
-        type: Sequelize.STRING
+        type: Datatypes.STRING
         ,allowNull : false
       },
       

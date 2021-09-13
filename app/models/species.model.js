@@ -1,23 +1,30 @@
-module.exports = (sequelize, Sequelize) => {
+
+
+module.exports = (sequelize, Datatypes) => {
     const Species = sequelize.define("species", {
         speciesid: {
-        type: Sequelize.INTEGER,
+        type: Datatypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
         speciesname: {
-        type: Sequelize.STRING
+        type: Datatypes.STRING(50)
         ,allowNull : false
       },
       
      
     });
-  Species.associate = model =>{
-    Species.hasMany(model.species,{
-    onDelete: "cascade"
-    })
-  }
 
+    Species.associate = function(models){
+      Species.hasMany(models.owns,{
+        foreignKey : {
+          name :  'species_speciesid',
+          allowNull : false,
+          targetKey : 'id'
+        }
+      })
+    }
+  
     return Species;
 
   };

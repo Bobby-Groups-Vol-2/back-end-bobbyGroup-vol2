@@ -1,3 +1,4 @@
+
 const db = require("../models");
 const Cats = db.cats;
 
@@ -5,12 +6,7 @@ const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.catname) {
-    res.status(400).send({
-      message: "Content can not be empty!"
-    });
-    return;
-  }
+  
 
   // Create a Cats
   const cats = {
@@ -22,9 +18,8 @@ exports.create = (req, res) => {
     status:  req.body.status,
     dob :  req.body.dob,
     certificateimage: req.body.certificateimage ,
-    species_speciesid:  req.body.species_speciesid,
-    orders_orderid: req.body.orders_orderid,
-
+    orders_orderid : req.body.orders_orderid,
+    species_speciesid : req.body.species_speciesid
   };
 
   // Save Cats in the database
@@ -44,7 +39,8 @@ exports.findAll = (req, res) => {
     const catid = req.query.catid;
     var condition = catid ? { catid: { [Op.like]: `%${catid}%` } } : null;
 
-    Cats.findAll({ where: condition })
+    Cats.findAll({ where: condition ,
+              include : [db.species]})
       .then(data => {
          
         res.send(data);
@@ -59,7 +55,10 @@ exports.findAll = (req, res) => {
   exports.findOne = (req, res) => {
     const id = req.params.id;
   
-    Cats.findByPk(id)
+    Cats.findAll({
+      where : {Catid : id}
+      ,include : [db.species]
+    })
       .then(data => {
         res.send(data);
       })

@@ -1,6 +1,6 @@
 const db = require("../models");
 const Users = db.users;
-const Orders = db.orders;
+
 const Op = db.Sequelize.Op;
 
 // Create and Save a new user
@@ -41,7 +41,10 @@ exports.findAll = (req, res) => {
   const username = req.query.username;
   var condition = username ? { username: { [Op.like]: `%${username}%` } } : null;
 
-  Users.findAll({ where: condition})
+  Users.findAll({ 
+    where : condition,
+    include: [db.orders]
+  })
     .then(data => {
       res.send(data);
     })
@@ -57,7 +60,11 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  Users.findByPk(id)
+  Users.findAll({
+    where : {UserId : req.params.id},
+    include : [db.orders]
+  }
+    )
     .then(data => {
       res.send(data);
     })

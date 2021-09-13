@@ -1,18 +1,29 @@
-module.exports = (sequelize, Sequelize) => {
+
+
+module.exports = (sequelize, Datatypes) => {
     const Patterns = sequelize.define("patterns", {
        patternid: {
-        type: Sequelize.INTEGER,
+        type: Datatypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
         patternname: {
-        type: Sequelize.STRING
+        type: Datatypes.STRING(50)
         ,allowNull : false
       },
       
      
     });
-  
+    Patterns.associate = function(models){
+      Patterns.hasMany(models.owns,{
+        foreignKey : {
+          name :  'patterns_patternid',
+          targetKey : 'id',
+         allowNull: false
+        }
+      })
+    }
+     
     return Patterns;
   };
 

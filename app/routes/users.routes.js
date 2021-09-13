@@ -1,6 +1,6 @@
 module.exports = app => {
     const users = require("../controllers/users.controller.js");
-  
+    const db = require("../models")
     var router = require("express").Router();
   
     // Create a new users

@@ -5,18 +5,13 @@ const Op = db.Sequelize.Op;
 // Create and Save a new species
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.speciesname) {
-    res.status(400).send({
-      message: "Content can not be empty!"
-    });
-    return;
-  }
+  
 
   // Create a species
   const species = {
     speciesid: req.body.speciesid,
     speciesname: req.body.speciesname,
-
+    owns : req.body.owns
   };
 
   // Save species in the database
@@ -36,7 +31,9 @@ exports.findAll = (req, res) => {
   const speciesname = req.query.speciesname;
   var condition = speciesname ? { speciesname: { [Op.like]: `%${speciesname}%` } } : null;
 
-  Species.findAll({ where: condition })
+  Species.findAll({ where: condition ,
+          include : [{ model : db.owns,
+                        include: [db.species,db.patterns]}] })
     .then(data => {
       res.send(data);
     })
@@ -52,7 +49,11 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  Species.findByPk(id)
+  Species.findAll({
+    where : {speciesid : id},
+    include : [{ model : db.owns,
+      include: [db.species,db.patterns]}]
+  })
     .then(data => {
       res.send(data);
     })

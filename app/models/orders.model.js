@@ -1,34 +1,27 @@
 
-
-module.exports = (sequelize, Sequelize) => {
+module.exports = (sequelize, Datatypes) => {
     const Orders = sequelize.define("orders", {
         orderid: {
-        type: Sequelize.INTEGER,
+        type: Datatypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
- 
-        
-    },
-      users_userid:{
-        type : Sequelize.INTEGER,
-      
+      },
+   });
+   Orders.associate = function(models){
+    Orders.belongsTo(models.users,{
+      foreignKey : {
+       name : 'users_userid',
+       type : Datatypes.INTEGER,
+       allowNull : false
       }
-      
-      
-     
-    });
- 
-  Orders.associate = models =>{
-  Orders.belongsTo(model.Users, {
-    foreignKey:{
-     name   : 'users_userid',
-    allowNull : false
-    }
-  }),
-    Orders.hasMany(model.cats,{
-      onDelete: "cascade"
+    }),
+    Orders.hasMany(models.cats,{
+      foreignKey : {
+        name : 'orders_orderid',
+        allowNull: false,
+        type: Datatypes.INTEGER
+      }
     })
   }
- 
-    return Orders;
+  return Orders;
   };

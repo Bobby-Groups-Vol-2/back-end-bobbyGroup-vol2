@@ -1,36 +1,43 @@
-module.exports = (sequelize, Sequelize) => {
+
+
+module.exports = (sequelize, Datatypes) => {
     const Users = sequelize.define("users", {
         userid: {
-        type: Sequelize.INTEGER,
+        type: Datatypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
         username: {
-        type: Sequelize.STRING
+        type: Datatypes.STRING(30) 
         ,allowNull : false
       },
       password: {
-        type: Sequelize.STRING
+        type: Datatypes.STRING(30) 
         ,allowNull : false
       },
       role:{
-        type: Sequelize.STRING
+        type: Datatypes.STRING(10) 
         ,allowNull : false
       },
       address:{
-        type: Sequelize.STRING
+        type: Datatypes.STRING(100),
       },
       tel:{
-        type: Sequelize.INTEGER
+        type: Datatypes.STRING(13) 
         ,allowNull : false
       }
        });
-    Users.associate = models =>{
-      Users.hasMany(models.orders,{
-        onDelete: "cascade"
-      })
-    }
 
+       Users.associate = function(models){
+         Users.hasMany(models.orders,{
+          foreignKey : {
+            name : 'users_userid',
+             type : Datatypes.INTEGER,
+             allowNull : false
+             }
+         })
+       }
+    
     return Users;
   };
 

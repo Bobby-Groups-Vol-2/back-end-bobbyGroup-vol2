@@ -36,7 +36,9 @@ exports.findAll = (req, res) => {
   const patternname = req.query.patternname;
   var condition = patternname ? { patternname: { [Op.like]: `%${patternname}%` } } : null;
 
-  Patterns.findAll({ where: condition })
+  Patterns.findAll({ where: condition ,
+    include : [{ model : db.owns,
+      include: [db.species,db.patterns]}]})
     .then(data => {
       res.send(data);
     })
@@ -52,7 +54,11 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  Patterns.findByPk(id)
+  Patterns.findAll({
+    where : {patternid : req.params.id},
+    include : [{ model : db.owns,
+      include: [db.species,db.patterns]}]
+  })
     .then(data => {
       res.send(data);
     })

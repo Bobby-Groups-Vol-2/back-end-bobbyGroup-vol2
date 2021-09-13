@@ -4,21 +4,14 @@ const Orders = db.orders;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
-  // Validate request
-  if (!req.body.users_userid) {
-    res.status(400).send({
-      message: "Content can not be empty!"
-    });
-    return;
-  }
+ 
+  
 
   // Create a orders
   const orders = {
     orderid: req.body.orderid,
     users_userid: req.body.users_userid
-   
-
-  };
+   };
 
   // Save orders in the database
   Orders.create(orders)
@@ -40,7 +33,9 @@ exports.findAll = (req, res) => {
     const orderid = req.query.orderid;
     var condition = orderid ? { orderid: { [Op.like]: `%${orderid}%` } } : null;
 
-    Orders.findAll({ where: condition })
+    Orders.findAll({where: condition ,
+    include : [db.cats]}
+       )
       .then(data => {
          
         res.send(data);
@@ -56,7 +51,10 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  Orders.findByPk(id)
+  Orders.findAll({
+    where : {Orderid :id},
+  
+  })
     .then(data => {
       res.send(data);
     })
