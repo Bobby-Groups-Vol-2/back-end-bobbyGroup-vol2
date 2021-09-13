@@ -18,7 +18,7 @@ module.exports = (sequelize, Datatypes) => {
     Orders.hasMany(models.cats,{
       foreignKey : {
         name : 'orders_orderid',
-        allowNull: false,
+       
         type: Datatypes.INTEGER
       }
     })

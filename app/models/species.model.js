@@ -17,11 +17,15 @@ module.exports = (sequelize, Datatypes) => {
 
     Species.associate = function(models){
       Species.hasMany(models.owns,{
+      
         foreignKey : {
           name :  'species_speciesid',
-          allowNull : false,
-          targetKey : 'id'
-        }
+          type : Datatypes.INTEGER,
+          
+         
+        },
+    
+      
       })
     }
   

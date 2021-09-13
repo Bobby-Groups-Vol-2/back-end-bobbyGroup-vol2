@@ -36,7 +36,9 @@ exports.findAll = (req, res) => {
   const vacname = req.query.vacname;
   var condition = vacname ? { vacname: { [Op.like]: `%${vacname}%` } } : null;
 
-  Vaccines.findAll({ where: condition })
+  Vaccines.findAll({ where: condition , 
+    include : [{ model : db.takes,
+      include: [db.vaccines]}]})
     .then(data => {
       res.send(data);
     })
@@ -107,7 +109,7 @@ exports.delete = (req, res) => {
     })
     .catch(err => {
       res.status(500).send({
-        message: "Could not delete Vaccines with id=" + id
+        message: "Could not delete Vaccines with id=" + id 
       });
     });
 };

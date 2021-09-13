@@ -15,12 +15,14 @@ module.exports = (sequelize, Datatypes) => {
      
     });
     Patterns.associate = function(models){
-      Patterns.hasMany(models.owns,{
+      Patterns.hasMany(models.owns,{ 
+    
         foreignKey : {
           name :  'patterns_patternid',
-          targetKey : 'id',
-         allowNull: false
-        }
+          type : Datatypes.INTEGER,
+         
+        } 
+      
       })
     }
      

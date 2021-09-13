@@ -38,7 +38,7 @@ exports.findAll = (req, res) => {
 
   Patterns.findAll({ where: condition ,
     include : [{ model : db.owns,
-      include: [db.species,db.patterns]}]})
+      include: [db.species]}]})
     .then(data => {
       res.send(data);
     })
@@ -57,7 +57,7 @@ exports.findOne = (req, res) => {
   Patterns.findAll({
     where : {patternid : req.params.id},
     include : [{ model : db.owns,
-      include: [db.species,db.patterns]}]
+      include: [db.species]}]
   })
     .then(data => {
       res.send(data);
@@ -114,7 +114,8 @@ exports.delete = (req, res) => {
     })
     .catch(err => {
       res.status(500).send({
-        message: "Could not delete pattern with id=" + id
+        message: "Could not delete pattern with id=" + id 
+        
       });
     });
 };

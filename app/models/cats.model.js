@@ -47,6 +47,13 @@ module.exports = (sequelize, Datatypes) => {
          allowNull : false
         }
       })
+      Cats.hasMany(models.takes,{
+        foreignKey : {
+         name : 'cats_catid',
+         type : Datatypes.INTEGER,
+      
+        }
+      })
     }
     return Cats;
   };

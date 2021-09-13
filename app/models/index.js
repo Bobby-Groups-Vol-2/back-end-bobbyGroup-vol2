@@ -31,6 +31,7 @@ db.users = require("./users.model.js")(sequelize,Sequelize);
 db.patterns = require("./patterns.model.js")(sequelize,Sequelize);
 db.orders = require("./orders.model.js")(sequelize,Sequelize);
 db.cats = require("./cats.model.js")(sequelize,Sequelize);
+db.takes = require("./takes.model.js")(sequelize,Sequelize);
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
     db[modelName].associate(db);

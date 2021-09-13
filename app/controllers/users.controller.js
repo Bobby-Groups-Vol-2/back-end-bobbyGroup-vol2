@@ -61,7 +61,7 @@ exports.findOne = (req, res) => {
   const id = req.params.id;
 
   Users.findAll({
-    where : {UserId : req.params.id},
+    where : {UserId : req.param.id},
     include : [db.orders]
   }
     )

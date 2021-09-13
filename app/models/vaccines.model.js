@@ -6,13 +6,21 @@ module.exports = (sequelize, Datatypes) => {
         primaryKey: true
     },
       vacname: {
-        type: Datatypes.STRING
+        type: Datatypes.STRING(50)
         ,allowNull : false
       },
       
      
     });
-  
+  Vaccines.associate = function(models){
+    Vaccines.hasMany(models.takes,{
+      foreignKey :{
+       name :  'vaccines_vacid',
+       
+      }
+     
+    })
+  }
     return Vaccines;
   };
 

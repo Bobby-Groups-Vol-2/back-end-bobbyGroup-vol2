@@ -9,6 +9,7 @@ module.exports = app => {
     // Retrieve all patterns
     router.get("/", owns.findAll);
 
+
  
  
     app.use('/api/owns', router);

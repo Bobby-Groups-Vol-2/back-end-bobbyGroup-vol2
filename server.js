@@ -37,6 +37,7 @@ require("./app/routes/patterns.routes")(app);
 require("./app/routes/orders.routes")(app);
 require("./app/routes/cats.routes")(app);
 require("./app/routes/owns.routes")(app);
+require("./app/routes/takes.routes")(app);
 
 
 
