@@ -23,7 +23,7 @@ app.use(cors(corsOptions));
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to OffMeow application." });
+  res.json({ message: "Welcome to OffMeow application. Hello world" });
 });
 
 app.get("/test", (req, res) => {
