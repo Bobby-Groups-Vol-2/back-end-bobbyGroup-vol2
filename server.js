@@ -9,9 +9,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 db.sequelize.sync({ alter : true }).then(() => {
-  app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}.`);
-  });
+  console.log("offmeow works");
 });
 var corsOptions = {
     origin: "http://localhost:8081"
@@ -19,7 +17,9 @@ var corsOptions = {
 
 app.use(cors(corsOptions));
 
-
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}.`);
+  });
 
 // simple route
 app.get("/", (req, res) => {
