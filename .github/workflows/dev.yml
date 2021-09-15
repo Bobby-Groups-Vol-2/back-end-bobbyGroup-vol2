@@ -38,6 +38,8 @@ jobs:
          echo $DB_USER > .env
          echo $DB_PASSWORD > .env
          echo $DB_NAME > .env
+         ls -la
+         cat .env
 
 
       - name: Login to Github registry ghcr
