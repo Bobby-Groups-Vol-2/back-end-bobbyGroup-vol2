@@ -29,15 +29,14 @@ jobs:
 
       - name: check .env
         id: import-env
-        uses: actions/github-script@v2
-        with:
-          script: |
-            touch .env
-            echo ${{ secrets.DB_HOST }} >> .env
-            echo ${{ secrets.DB_NAME }} >> .env
-            echo ${{ secrets.DB_USER }} >> .env
-            echo ${{ secrets.DB_PASSWORD }} >> .env
-            cat .env
+        shell: bash
+        run: |
+          touch .env
+          echo ${{ secrets.DB_HOST }} >> .env
+          echo ${{ secrets.DB_NAME }} >> .env
+          echo ${{ secrets.DB_USER }} >> .env
+          echo ${{ secrets.DB_PASSWORD }} >> .env
+          cat .env
 
       - name: Login to Github registry ghcr
         uses: docker/login-action@v1
