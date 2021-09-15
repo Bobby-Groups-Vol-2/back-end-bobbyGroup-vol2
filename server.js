@@ -23,7 +23,7 @@ app.listen(PORT, () => {
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to OffMeow application. Hello world" });
+  res.json({ message: "Welcome to OffMeow application. Hello world Dev" });
 });
 
 app.get("/test", (req, res) => {

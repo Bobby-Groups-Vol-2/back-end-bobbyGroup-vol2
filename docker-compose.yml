@@ -2,7 +2,9 @@ version: "3.6"
 services:
   back-end:
     build: .
-    image: ghcr.io/bobby-groups-vol-2/back-end-bobbygroup-vol2:dev  
+    image: ghcr.io/bobby-groups-vol-2/back-end-bobbygroup-vol2:dev
+    ports:
+    - 5000:5000  
     
 networks:
     default:
