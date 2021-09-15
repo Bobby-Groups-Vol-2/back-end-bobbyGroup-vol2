@@ -17,7 +17,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server",
+    "start": "pm2 start server.js",
     "deploy": "npx gh-pages -b deploy --message '[skip ci] Updates' -d ./"
   },
   "repository": {
