@@ -51,7 +51,9 @@ jobs:
           echo "DB_PASSWORD" .env
 
       - name: check .env again
-        run: ls -la
+        run: |
+          ls -la
+          cat .env
 
       - name: Build image and push Dockerfile
         uses: docker/build-push-action@v2
