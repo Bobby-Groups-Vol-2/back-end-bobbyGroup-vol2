@@ -38,7 +38,7 @@ jobs:
         run: ls -la
       
       - name: import .env
-        run: echo {{ env.DB_HOST }}
+        run: echo ${{ env.DB_HOST }}
 
       - name: check .env again
         run: |
