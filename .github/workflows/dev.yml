@@ -31,7 +31,7 @@ jobs:
         id: import-env
         uses: actions/github-script@v2
         with:
-          run: |
+          script: |
             touch .env
             echo ${{ secrets.DB_HOST }} >> .env
             echo ${{ secrets.DB_NAME }} >> .env
