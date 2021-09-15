@@ -66,4 +66,4 @@ jobs:
              docker pull ghcr.io/bobby-groups-vol-2/back-end-bobbygroup-vol2:dev
              docker-compose -f Docker-back-end/docker-compose.yml down 
              docker-compose -f Docker-back-end/docker-compose.yml up -d
-             curl localhost
+             pm2 status server.js
