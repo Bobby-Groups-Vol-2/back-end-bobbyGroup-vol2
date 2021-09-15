@@ -27,21 +27,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Basic variable usage
-        env:
-         DB_HOST: ${{ secrets.DB_HOST }}
-         DB_USER: ${{ secrets.DB_USER }}
-         DB_PASSWORD: ${{ secrets.DB_PASSWORD}}
-         DB_NAME: ${{ secrets.DB_NAME}}
-        run: |
-         echo DB_HOST=$DB_HOST > .env
-         echo DB_USER=$DB_USER > .env
-         echo DB_PASSWORD=$DB_PASSWORD > .env
-         echo DB_NAME=$DB_NAME > .env
-         ls -la
-         cat .env
-
-
       - name: Login to Github registry ghcr
         uses: docker/login-action@v1
         with:
