@@ -27,16 +27,18 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: check .env
-        id: import-env
-        shell: bash
+      - name: Basic variable usage
+        env:
+         DB_HOST: 20.205.236.127
+         DB_USER: nekoadmin
+         DB_PASSWORD: nekoDB222
+         DB_NAME: NekoDB
         run: |
-          touch .env
-          echo ${{ secrets.DB_HOST }} >> .env
-          echo ${{ secrets.DB_NAME }} >> .env
-          echo ${{ secrets.DB_USER }} >> .env
-          echo ${{ secrets.DB_PASSWORD }} >> .env
-          cat .env
+         $DB_HOST > .env
+         $DB_USER > .env
+         $DB_PASSWORD > .env
+         $DB_NAME > NekoDB
+
 
       - name: Login to Github registry ghcr
         uses: docker/login-action@v1
@@ -77,11 +79,3 @@ jobs:
              docker pull ghcr.io/bobby-groups-vol-2/back-end-bobbygroup-vol2:dev
              docker-compose -f Docker-back-end/docker-compose.yml down 
              docker-compose -f Docker-back-end/docker-compose.yml up -d
-             cd back-end-bobbyGroup-vol2
-             touch .env
-             echo ${{ secrets.DB_HOST }} >> .env
-             echo ${{ secrets.DB_NAME }} >> .env
-             echo ${{ secrets.DB_USER }} >> .env
-             echo ${{ secrets.DB_PASSWORD }} >> .env
-             cat .env
-
