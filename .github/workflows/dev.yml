@@ -34,10 +34,10 @@ jobs:
          DB_PASSWORD: ${{ secrets.DB_PASSWORD}}
          DB_NAME: ${{ secrets.DB_NAME}}
         run: |
-         $DB_HOST > .env
-         $DB_USER > .env
-         $DB_PASSWORD > .env
-         $DB_NAME > .env
+         echo $DB_HOST > .env
+         echo $DB_USER > .env
+         echo $DB_PASSWORD > .env
+         echo $DB_NAME > .env
 
 
       - name: Login to Github registry ghcr
