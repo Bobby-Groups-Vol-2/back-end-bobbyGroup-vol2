@@ -52,7 +52,6 @@ jobs:
 
       - name: check .env again
         run: |
-          ls -la
           cat .env
 
       - name: Build image and push Dockerfile
