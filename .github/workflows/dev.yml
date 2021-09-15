@@ -44,6 +44,7 @@ jobs:
 
       - name: check .env again
         run: |
+          ls -la
           cat .env
 
       - name: Hello world
