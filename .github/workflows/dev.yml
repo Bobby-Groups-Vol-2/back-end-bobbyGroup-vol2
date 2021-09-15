@@ -45,7 +45,7 @@ jobs:
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
       
       - name: check .env again
-        run ls -la
+        run: ls -la
 
       - name: Build image and push Dockerfile
         uses: docker/build-push-action@v2
