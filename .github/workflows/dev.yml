@@ -38,17 +38,17 @@ jobs:
         run: ls -la
       
       - name: import .env
-        env:
-          DB_HOST: ${{ secrets.DB_HOST }}
-          DB_NAME: ${{ secrets.DB_NAME }}
-          DB_USER: ${{ secrets.DB_USER }}
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        #env:
+                #DB_HOST: ${{ secrets.DB_HOST }}
+          #DB_NAME: ${{ secrets.DB_NAME }}
+          # DB_USER: ${{ secrets.DB_USER }}
+          # DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: |
           touch .env
-          echo "DB_HOST" > .env
-          echo "DB_NAME" > .env
-          echo "DB_USER" > .env
-          echo "DB_PASSWORD" .env
+          echo "DB_HOST=${{ secrets.DB_HOST }}" > .env
+          echo "DB_NAME=${{ secrets.DB_NAME }}" > .env
+          echo "DB_USER={{ secrets.DB_USER }}" > .env
+          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" > .env
 
       - name: check .env again
         run: |
