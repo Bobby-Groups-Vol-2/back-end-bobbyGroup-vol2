@@ -50,6 +50,9 @@ jobs:
           DB_USER: ${{ secrets.DB_USER }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
 
+      - name: check .env again
+        run: ls -la
+
       - name: Build image and push Dockerfile
         uses: docker/build-push-action@v2
         with:
