@@ -29,15 +29,15 @@ jobs:
 
       - name: Basic variable usage
         env:
-         DB_HOST: 20.205.236.127
-         DB_USER: nekoadmin
-         DB_PASSWORD: nekoDB222
-         DB_NAME: NekoDB
+         DB_HOST: ${{ secrets.DB_HOST }}
+         DB_USER: ${{ secrets.DB_USER }}
+         DB_PASSWORD: ${{ secrets.DB_PASSWORD}}
+         DB_NAME: ${{ secrets.DB_NAME}}
         run: |
          $DB_HOST > .env
          $DB_USER > .env
          $DB_PASSWORD > .env
-         $DB_NAME > NekoDB
+         $DB_NAME > .env
 
 
       - name: Login to Github registry ghcr
