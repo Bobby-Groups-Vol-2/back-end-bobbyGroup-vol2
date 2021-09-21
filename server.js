@@ -33,7 +33,7 @@ db.sequelize.sync({ alter : true }).then(() => {
   console.log("offmeow works");
 });
 var corsOptions = {
-    origin: process.env.ORIGIN
+    origin: "*"
 }
 
 app.use(cors(corsOptions));
