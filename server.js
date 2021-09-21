@@ -8,6 +8,7 @@ const multer = require('multer');
 app.use(multer({dest:'./uploads/'}).single('file'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 app.use(cors({
   methods: ['GET','PUT','POST','DELETE','UPDATE'],
   origin: '*',
