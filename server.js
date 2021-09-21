@@ -20,6 +20,11 @@ var upload = multer({ storage: storage })
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 0c05aeb4e782033ab4d384221e44a3ecfbbb4f5b
 db.sequelize.sync({ alter : true }).then(() => {
   console.log("offmeow works");
 });
