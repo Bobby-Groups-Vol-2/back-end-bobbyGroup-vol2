@@ -8,6 +8,7 @@ module.exports = app => {
     // Retrieve all patterns
     router.get("/", cats.findAll);
 
+    router.get("/image", cats.findImage);
     router.post("/",cats.create);
  
     // Retrieve a single cats with id

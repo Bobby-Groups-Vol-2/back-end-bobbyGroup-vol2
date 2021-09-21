@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require("express");
 const cors   = require("cors");
 const app = express();
@@ -19,17 +20,12 @@ var upload = multer({ storage: storage })
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({
-  methods: ['GET','PUT','POST','DELETE','UPDATE'],
-  origin: '*',
-  credentials: true,
 
-}));
 db.sequelize.sync({ alter : true }).then(() => {
   console.log("offmeow works");
 });
 var corsOptions = {
-    origin: "http://localhost:8081"
+    origin: process.env.ORIGIN
 }
 
 app.use(cors(corsOptions));

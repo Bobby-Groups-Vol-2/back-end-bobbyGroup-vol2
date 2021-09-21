@@ -37,6 +37,7 @@ exports.create = (req, res) => {
 
 exports.findAll = (req, res) => {
   const catid = req.query.catid;
+ 
   var condition = catid ? { catid: { [Op.like]: `%${catid}%` } } : null;
 
   Cats.findAll({
@@ -47,7 +48,30 @@ exports.findAll = (req, res) => {
   
   })
     .then(data => {
+      
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving cats."
+      });
+    });
+};
+exports.findImage = (req, res) => {
+  const catimage = req.query.catimage;
+ 
+  var imagfile = `../uploads/{$catimage}`
 
+  Cats.findAll({
+    where: imagfile,
+
+    
+   
+  
+  })
+    .then(data => {
+      
       res.send(data);
     })
     .catch(err => {
