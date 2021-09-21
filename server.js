@@ -20,15 +20,6 @@ var upload = multer({ storage: storage })
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-<<<<<<< HEAD
-=======
-app.use(cors());
-app.use(cors({
-  methods: ['GET','PUT','POST','DELETE','UPDATE'],
-  origin: '*',
-  credentials: true,
->>>>>>> 6523d78bf4feec7191f13b83f7f31f2b9f6f11a5
-
 db.sequelize.sync({ alter : true }).then(() => {
   console.log("offmeow works");
 });
