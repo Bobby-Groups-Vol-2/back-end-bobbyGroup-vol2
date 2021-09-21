@@ -8,6 +8,8 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
+
 db.sequelize.sync({ alter : true }).then(() => {
   console.log("offmeow works");
 });
