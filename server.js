@@ -5,7 +5,18 @@ const db = require("./app/models");
 const PORT = process.env.PORT || 5000;
 const multer = require('multer');
 
-app.use(multer({dest:'./uploads/'}).single('file'));
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname )
+  }
+})
+
+var upload = multer({ storage: storage })
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => {
@@ -33,9 +44,19 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + '/upload.html');
 });
 
-app.post('/upload', function (req, res) {
-  res.send(req.files)
+app.post('/uploadfile', upload.single('myFile'), (req, res, next) => {
+  const file = req.file
+  if (!file) {
+    const error = new Error('Please upload a file')
+    error.httpStatusCode = 400
+    return next(error)
+  }
+    res.send(file)
+ 
 })
+
+
+
 
 app.get("/test", (req, res) => {
   res.json({ message: "It's work"})
