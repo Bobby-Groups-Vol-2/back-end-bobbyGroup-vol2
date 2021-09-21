@@ -39,7 +39,8 @@ jobs:
       
       - name: import .env
         run: |
-          touch .env      
+          touch .env   
+          echo 'ORIGIN=${{ secrets.ORIGIN }}' >> .env  
           echo 'DB_HOST=${{ secrets.DB_HOST }}' >> .env
           echo 'DB_NAME=${{ secrets.DB_NAME }}' >> .env
           echo 'DB_USER=${{ secrets.DB_USER }}' >> .env
