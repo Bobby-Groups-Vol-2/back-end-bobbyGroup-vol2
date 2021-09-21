@@ -19,12 +19,12 @@ var upload = multer({ storage: storage })
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
-  res.header('Access-Control-Allow-Methods','POST, GET, PUT, PATCH, DELETE')
-  res.header('Access-Control-Allow-Headers','Content-Type, Option, Authorization')
-  next()
-})
+app.use(cors({
+  methods: ['GET','PUT','POST','DELETE','UPDATE'],
+  origin: '*',
+  credentials: true,
+
+}));
 db.sequelize.sync({ alter : true }).then(() => {
   console.log("offmeow works");
 });
