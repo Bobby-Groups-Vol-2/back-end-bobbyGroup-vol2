@@ -7,7 +7,8 @@ module.exports = (sequelize, Datatypes) => {
     },
       vacname: {
         type: Datatypes.STRING(50)
-        ,allowNull : false
+        ,allowNull : false,
+        unique: true
       },
       
      

@@ -9,7 +9,8 @@ module.exports = (sequelize, Datatypes) => {
     },
         speciesname: {
         type: Datatypes.STRING(50)
-        ,allowNull : false
+        ,allowNull : false,
+        unique: true
       },
       
      
