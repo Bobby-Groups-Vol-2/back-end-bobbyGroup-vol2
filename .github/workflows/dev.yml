@@ -45,18 +45,12 @@ jobs:
           echo 'DB_NAME=${{ secrets.DB_NAME }}' >> .env
           echo 'DB_USER=${{ secrets.DB_USER }}' >> .env
           echo 'DB_PASSWORD=${{ secrets.DB_PASSWORD }}' >> .env 
+          echo 'IMAGE_PATH=${{ secrets.IMAGE_PATH }}' >> .env
 
       - name: check .env again
         run: |
           ls -la
           cat .env
-
-      - name: Hello world
-        run: echo Hello world $FIRST_NAME $middle_name $Last_Name!
-        env:
-         FIRST_NAME: Mona
-         middle_name: The
-         Last_Name: Octocat
 
       - name: Build image and push Dockerfile
         uses: docker/build-push-action@v2
