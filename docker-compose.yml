@@ -4,7 +4,9 @@ services:
     build: .
     image: ghcr.io/bobby-groups-vol-2/back-end-bobbygroup-vol2:dev
     ports:
-    - 5000:5000  
+    - 5000:5000
+    volumes:
+    - ./images:/app/uploads
     
 networks:
     default:
