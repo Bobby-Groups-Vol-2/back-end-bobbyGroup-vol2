@@ -31,13 +31,12 @@ app.get("/", (req, res) => {
 
 
 
-app.use(express.static(process.env.IMAGE_PATH));
+app.use("/api/images",express.static(process.env.IMAGE_PATH));
 
 
 app.get("/test", (req, res) => {
   res.json({ message: "It's work"})
 })
-
 
 
 
