@@ -4,15 +4,22 @@ const Cats = db.cats;
 
 const Op = db.Sequelize.Op;
 
-exports.create = (req, res) => {
+exports.create = (req, res,next) => {
   // Validate request
-
+  const file = req.file
+  console.log(file);
+  if (!file) {
+    const error = new Error('Please upload a file')
+    error.httpStatusCode = 400
+    return next(error)
+  }
+ 
 
   // Create a Cats
   const cats = {
     catid: req.body.catid,
     catname: req.body.catname,
-    catimage: req.body.catimage,
+    catimage: file.filename,
     price: req.body.price,
     gender: req.body.gender,
     status: req.body.status,

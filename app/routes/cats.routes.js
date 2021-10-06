@@ -1,6 +1,7 @@
+const upload = require("../util/multer.js")
 module.exports = app => {
     const cats = require("../controllers/cats.controller.js");
-  
+
     var router = require("express").Router();
   
   
@@ -8,8 +9,10 @@ module.exports = app => {
     // Retrieve all patterns
     router.get("/", cats.findAll);
 
-    router.get("/image", cats.findImage);
-    router.post("/",cats.create);
+    app.post('/uploadfile',  (req, res, next) => {
+ 
+     })
+    router.post("/",upload.single('myFile'),cats.create);
  
     // Retrieve a single cats with id
     router.get("/:id", cats.findOne);
