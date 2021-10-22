@@ -9,9 +9,7 @@ module.exports = app => {
     // Retrieve all patterns
     router.get("/", cats.findAll);
 
-    app.post('/uploadfile',  (req, res, next) => {
- 
-     })
+    
     router.post("/",upload.single('myFile'),cats.create);
  
     // Retrieve a single cats with id

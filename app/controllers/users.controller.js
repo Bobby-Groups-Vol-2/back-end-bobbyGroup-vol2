@@ -1,10 +1,11 @@
 const db = require("../models");
 const Users = db.users;
-
+const bcrypt = require("bcrypt")
 const Op = db.Sequelize.Op;
 
+
 // Create and Save a new user
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
   // Validate request
   if (!req.body.username) {
     res.status(400).send({
@@ -12,12 +13,12 @@ exports.create = (req, res) => {
     });
     return;
   }
-
+  const hashPassword = await bcrypt.hash(req.body.password,10)
   // Create a users
   const users = {
     userid: req.body.userid,
     username: req.body.username,
-    password: req.body.password,
+    password: hashPassword,
     role: req.body.role,
     address: req.body.address,
     tel : req.body.tel
@@ -38,15 +39,20 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-  const username = req.query.username;
-  var condition = username ? { username: { [Op.like]: `%${username}%` } } : null;
+
 
   Users.findAll({ 
-    where : condition,
+  
     include: [db.orders]
   })
     .then(data => {
-      res.send(data);
+      const Arr = data.map(user => ({
+        userid : user.userid,
+        username : user.username,
+        role : user.role,
+       address : user.address,
+        tel : user.tel}))
+      res.json(Arr);
     })
     .catch(err => {
       res.status(500).send({

@@ -40,6 +40,10 @@ app.get("/test", (req, res) => {
 
 
 
+// bcrypt.compare(password, encrypt, function(err, res) {
+//   console.log(encrypt);
+// });
+
 require("./app/routes/vaccines.routes")(app);
 require("./app/routes/species.routes")(app);
 require("./app/routes/users.routes")(app);
