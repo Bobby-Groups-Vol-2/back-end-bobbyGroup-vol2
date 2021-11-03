@@ -13,7 +13,7 @@ exports.create = async (req, res) => {
     });
     return;
   }
-  const hashPassword = await bcrypt.hash(req.body.password,10)
+  const hashPassword = await bcrypt.hash(req.body.password,5)
   // Create a users
   const users = {
     userid: req.body.userid,
