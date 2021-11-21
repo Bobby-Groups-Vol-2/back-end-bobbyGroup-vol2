@@ -26,9 +26,12 @@ module.exports = (sequelize, Datatypes) => {
       tel:{
         type: Datatypes.STRING(13) 
         ,allowNull : false
-      }
+      },
+      
+      
        });
 
+      
        Users.associate = function(models){
          Users.hasMany(models.orders,{
           foreignKey : {
@@ -38,7 +41,10 @@ module.exports = (sequelize, Datatypes) => {
              }
          })
        }
+
+
     
     return Users;
   };
 
+   

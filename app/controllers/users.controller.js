@@ -1,8 +1,9 @@
 const db = require("../models");
 const Users = db.users;
-const bcrypt = require("bcrypt")
-const Op = db.Sequelize.Op;
-
+const bcrypt = require("bcrypt");
+require('dotenv').config()
+const { QueryTypes, json } = require('sequelize');
+const jwt = require('jsonwebtoken');
 
 // Create and Save a new user
 exports.create = async (req, res) => {
@@ -66,11 +67,11 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  Users.findAll({
-    where : {UserId : req.param.id},
-    include : [db.orders]
-  }
-    )
+  Users.findByPk(id)
+    .then(data => {
+      res.send(data);
+    })
+    
     .then(data => {
       res.send(data);
     })
@@ -147,3 +148,43 @@ exports.deleteAll = (req, res) => {
       });
     });
 };
+ const  findUsername =  ({username}) =>{
+
+ return  db.sequelize.query('SELECT * FROM users WHERE users.username = :username',  {
+    replacements: {username : username},
+    type: QueryTypes.SELECT
+  })
+  
+}
+
+ exports.loginController = async (req, res, next) => {
+
+  const username  = req.body.username;
+  const password = req.body.password
+ 
+  
+ loginUser = await findUsername({username:username})
+
+ logined = await bcrypt.compare( password,loginUser[0].password)
+  if(logined){
+    const payload = {
+      username: req.body.username,
+      password:  req.body.password,
+     
+    }
+   const SECRET = process.env.SECRET_KEY; //ในการใช้งานจริง คีย์นี้ให้เก็บเป็นความลับ 
+   
+   const tokens = jwt.sign(
+    {payload },SECRET,{ expiresIn: "2h",}
+ );
+ 
+ res.status(201).json({
+    token : tokens,
+    login : "success"
+  })    
+    }else{
+      res.send({login : "Login failed Wrong username or password"})
+    }
+     
+ 
+}
