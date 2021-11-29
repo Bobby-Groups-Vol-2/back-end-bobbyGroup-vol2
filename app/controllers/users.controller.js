@@ -157,10 +157,10 @@ exports.deleteAll = (req, res) => {
   
 }
 
- exports.loginController = async (req, res, next) => {
-try {
-  
-  const username  = req.body.username;
+ exports.loginController = async (req, res) => {
+
+  try {
+    const username  = req.body.username;
   const password = req.body.password
  
   
@@ -170,7 +170,7 @@ try {
   if(logined){
     const payload = {
       username: req.body.username,
-      password:  req.body.password,
+     
      
     }
    const SECRET = process.env.SECRET_KEY; //ในการใช้งานจริง คีย์นี้ให้เก็บเป็นความลับ 
@@ -183,13 +183,30 @@ try {
     token : tokens,
     login : "success"
   })   
-    }else{
-      res.send({login : "Login failed Wrong username or password"})
     }
+  } catch (error) {
+    res.send({login : "Login failed Wrong username or password"})
+  }
+  
      
-} catch (error) {
-  console.log(error);
-  next();
-}
+  }
+
+
+ exports.checkToken = async (req, res ) => {
+   try {
+    const token = req.headers.authorization.split(" ")[1]
+    const verify = jwt.verify(token,process.env.SECRET_KEY)
+    
+  if(verify){
+    const loginUser = await findUsername({username:verify.payload.username})
+    const user = loginUser[0]
+    delete user.password
+    res.json(user)
+  }
+   } catch (error) {
+    res.send("Authentication Failed")
+   }
+  
+   
+ }
  
-}
