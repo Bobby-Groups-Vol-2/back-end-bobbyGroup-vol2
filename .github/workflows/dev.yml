@@ -45,6 +45,7 @@ jobs:
           echo 'DB_NAME=${{ secrets.DB_NAME }}' >> .env
           echo 'DB_USER=${{ secrets.DB_USER }}' >> .env
           echo 'DB_PASSWORD=${{ secrets.DB_PASSWORD }}' >> .env 
+          echo 'SECRET_KEY=${{ secrets.SECRET_KEY }}' >> .env
           echo 'IMAGE_PATH=${{ secrets.IMAGE_PATH }}' >> .env
 
       - name: check .env again
