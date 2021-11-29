@@ -158,7 +158,8 @@ exports.deleteAll = (req, res) => {
 }
 
  exports.loginController = async (req, res, next) => {
-
+try {
+  
   const username  = req.body.username;
   const password = req.body.password
  
@@ -181,10 +182,14 @@ exports.deleteAll = (req, res) => {
  res.status(201).json({
     token : tokens,
     login : "success"
-  })    
+  })   
     }else{
       res.send({login : "Login failed Wrong username or password"})
     }
      
+} catch (error) {
+  console.log(error);
+  next();
+}
  
 }
