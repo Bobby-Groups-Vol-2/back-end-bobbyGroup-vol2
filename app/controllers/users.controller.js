@@ -206,6 +206,10 @@ exports.deleteAll = (req, res) => {
     const user = loginUser[0]
     delete user.password
     res.json(user)
+  }else{
+    res.status(400).json({
+      login : "failed"
+    })
   }
    } catch (error) {
     res.send("Authentication Failed")
