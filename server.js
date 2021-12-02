@@ -5,9 +5,10 @@ const app = express();
 const db = require("./app/models");
 const PORT = process.env.PORT || 5000;
 
+const multer = require("multer")
+const uplode = multer();
 
-
-
+app.use(uplode.array())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 db.sequelize.sync({  alter:true}).then(() => {
@@ -23,6 +24,7 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
   });
 
+ 
 // simple route
 app.get("/", (req, res) => {
 

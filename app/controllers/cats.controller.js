@@ -114,10 +114,13 @@ exports.update = (req, res) => {
   })
     .then(num => {
       if (num == 1) {
+        
         res.send({
           message: "Cats was updated successfully."
+          
         });
       } else {
+        console.log(req.body);
         res.send({
           message: `Cannot update Cats with id=${id}. Maybe Cats was not found or req.body is empty!`
         });
