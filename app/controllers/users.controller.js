@@ -183,6 +183,10 @@ exports.deleteAll = (req, res) => {
     token : tokens,
     login : "success"
   })   
+    }else{
+      res.status(400).json({
+        login : "failed"
+      })
     }
   } catch (error) {
     res.send({login : "Login failed Wrong username or password"})
