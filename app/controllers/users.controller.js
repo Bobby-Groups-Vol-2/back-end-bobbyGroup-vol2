@@ -183,13 +183,9 @@ exports.deleteAll = (req, res) => {
     token : tokens,
     login : "success"
   })   
-    }else{
-      res.status(400).json({
-        login : "failed"
-      })
     }
   } catch (error) {
-    res.send({login : "Login failed Wrong username or password"})
+    res.status(400).send({login : "Login failed Wrong username or password"})
   }
   
      
@@ -206,13 +202,9 @@ exports.deleteAll = (req, res) => {
     const user = loginUser[0]
     delete user.password
     res.json(user)
-  }else{
-    res.status(400).json({
-      login : "failed"
-    })
   }
    } catch (error) {
-    res.send("Authentication Failed")
+    res.status(400).send("Authentication Failed")
    }
   
    
