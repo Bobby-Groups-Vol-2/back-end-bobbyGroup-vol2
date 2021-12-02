@@ -5,10 +5,10 @@ const app = express();
 const db = require("./app/models");
 const PORT = process.env.PORT || 5000;
 
-const multer = require("multer")
-const uplode = multer();
+// const multer = require("multer")
+// const upload = multer();
 
-app.use(uplode.array())
+// app.use(upload.array())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 db.sequelize.sync({  alter:true}).then(() => {
