@@ -16,7 +16,7 @@ module.exports = app => {
     router.get("/:id", cats.findOne);
   
     // Update a cats with id
-    router.put("/:id",upload.single('myFile') ,cats.update);
+    router.put("/:id",upload.any() ,cats.update);
   
     // Delete a cats with id
     router.delete("/:id", cats.delete);

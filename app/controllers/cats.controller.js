@@ -115,18 +115,18 @@ const  findCatId =  (catid) =>{
  
 // Update a Cats by the id in the request
 exports.update = async (req, res) => {
-  const file = req.file
   const id = req.params.id;
  const founded =  await findCatId(id)
- console.log(file);
+ const file   = req.files
+const filename = file.length>0 ? file[0].filename : undefined
 if(founded.length == 0){
  return res.status(404).send("unfounded")
 }
-  Cats.update({...req.body,catimage:file.filename}, {
-    where: { catid: id },
+  Cats.update({...req.body,catimage : filename}, {
+    where: { catid: id }
+  })
+    .then(num => { 
    
-}).then(num => { 
-     
       
         res.send({
           message: "Cats was updated successfully."

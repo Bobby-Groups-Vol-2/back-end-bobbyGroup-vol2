@@ -163,16 +163,15 @@ exports.deleteAll = (req, res) => {
     const username  = req.body.username;
   const password = req.body.password
  
-  
- loginUser = await findUsername({username:username})
-
- logined = await bcrypt.compare( password,loginUser[0].password)
+  const loginUser = await findUsername({username:username})
+  if(!loginUser){
+    return res.status(404).send("Username not founded")
+  }
+  const logined = await bcrypt.compare( password,loginUser[0].password)
   if(logined){
     const payload = {
       username: req.body.username,
-     
-     
-    }
+     }
    const SECRET = process.env.SECRET_KEY; //ในการใช้งานจริง คีย์นี้ให้เก็บเป็นความลับ 
    
    const tokens = jwt.sign(
@@ -183,6 +182,8 @@ exports.deleteAll = (req, res) => {
     token : tokens,
     login : "success"
   })   
+    }else{
+      res.status(400).send({login : "Login failed Wrong username or password"})
     }
   } catch (error) {
     res.status(400).send({login : "Login failed Wrong username or password"})
@@ -202,6 +203,8 @@ exports.deleteAll = (req, res) => {
     const user = loginUser[0]
     delete user.password
     res.json(user)
+  }else{
+    res.status(400).send("Authentication Failed")
   }
    } catch (error) {
     res.status(400).send("Authentication Failed")
