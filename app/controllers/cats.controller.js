@@ -1,7 +1,7 @@
 
 const db = require("../models");
 const Cats = db.cats;
-
+const { QueryTypes, json } = require('sequelize');
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res,next) => {
@@ -104,24 +104,35 @@ exports.findOne = (req, res) => {
       });
     });
 };
+const  findCatId =  (catid) =>{
 
+  return  db.sequelize.query('SELECT * FROM cats WHERE cats.catid = :catid',  {
+     replacements: {catid : catid},
+     type: QueryTypes.SELECT
+   })
+   
+ }
+ 
 // Update a Cats by the id in the request
-exports.update = (req, res) => {
+exports.update = async (req, res) => {
   const id = req.params.id;
-
-  Cats.update(req.body, {
+ const founded =  await findCatId(id)
+ const file   = req.files
+const filename = file.length>0 ? file[0].filename : undefined
+if(founded.length == 0){
+ return res.status(404).send("unfounded")
+}
+  Cats.update({...req.body,catimage : filename}, {
     where: { catid: id }
   })
-    .then(num => {
-      if (num == 1) {
+    .then(num => { 
+   
+      
         res.send({
           message: "Cats was updated successfully."
+          
         });
-      } else {
-        res.send({
-          message: `Cannot update Cats with id=${id}. Maybe Cats was not found or req.body is empty!`
-        });
-      }
+     
     })
     .catch(err => {
       res.status(500).send({
