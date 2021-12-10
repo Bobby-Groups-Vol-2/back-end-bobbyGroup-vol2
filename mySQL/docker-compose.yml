@@ -1,0 +1,26 @@
+version: '3'
+services:
+    mysql:
+       image: mysql/mysql-server
+       container_name: mysql-server
+       command: --default-authentication-plugin=mysql_native_password
+       restart: always
+       ports:
+       - 3306:3306
+       environment:
+         MYSQL_DATABASE: NekoDB
+         MYSQL_USER: nekoadmin
+         MYSQL_PASSWORD: nekoDB222
+         MYSQL_ROOT_PASSWORD: admin222
+
+    phpmyadmin:
+       image: phpmyadmin/phpmyadmin
+       container_name: myadmin-mysql
+       links:
+       - mysql
+       environment:
+         PMA_HOST: mysql
+       ports:
+       - 8082:80
+       volumes:
+       - ~/mysql

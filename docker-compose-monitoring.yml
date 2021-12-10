@@ -1,0 +1,27 @@
+version: '3'
+services:
+   grafana:
+     image: "grafana/grafana"
+     environment:
+       GF_SERVER_ROOT_URL: http://grafana.server.name
+       GF_SECURITY_ADMIN_PASSWORD: secret
+     ports:
+       - 3000:3000
+        #networks:
+        #- loki
+
+   prometheus:
+     image: "prom/prometheus"
+     volumes:
+       - /tmp/prometheus.yml:/etc/prometheus/prometheus.yml
+     ports:
+       - 9090:9090
+     #networks:
+            #- loki
+        #command:
+      #- '--config.file=/tmp/prometheus.yml'
+
+   node-exporter:
+     image: "prom/node-exporter:latest"
+     ports:
+       - '9100:9100'
